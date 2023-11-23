@@ -1,0 +1,11 @@
+
+Fcsharpsquid:S3903"#Move 'Grid' into a named namespace.(†”A8·¼ÕÄ¿1
+mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(Ã½¥äúÿÿÿÿ8¸¼ÕÄ¿1
+ccsharpsquid:S3267ã">Loop should be simplified by calling Select(hit => hit.point))(´°²Á8²½Èí¿1
+ˆcsharpsquid:S2386"_Use an immutable collection or reduce the accessibility of the public static field 'GridArray'.(Ã½¥äúÿÿÿÿ8¸¼ÕÄ¿1
+ocsharpsquid:S2223"FChange the visibility of 'GridArray' or make it 'const' or 'readonly'.(Ã½¥äúÿÿÿÿ8¸¼ÕÄ¿1
+ycsharpsquid:S2696 "UMake the enclosing instance method 'static' or remove this set on the 'static' field.(ø·Ø8¼±Äì¿1
+~csharpsquid:S2696!"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(¯…Ÿõúÿÿÿÿ8‹ŸÄì¿1
+Ncsharpsquid:S1481D"*Remove the unused local variable 'endPos'.(¢„…Â8¼±Äì¿1
+Hcsharpsquid:S125“"Remove this commented out code.(şòÁıúÿÿÿÿ8¼±Äì¿1
+Ccsharpsquid:S125æ"Remove this commented out code.(‰Ù£¯8¸÷Çí¿1
