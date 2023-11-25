@@ -6,17 +6,26 @@ using Random = UnityEngine.Random;
 public class Grid : MonoBehaviour
 {
     [SerializeField] private int gridSizeX;
+    public int GridSizeX => gridSizeX;
+    
     [SerializeField] private int gridSizeY;
+    public int GridSizeY => gridSizeY;
 
     [SerializeField] private GameObject nodePrefab;
-    [SerializeField] private LayerMask wallLayer;
     
-    
+    public float NodeExtents { get; private set; }
 
-    public static GameObject[,] GridArray;
 
-    private static bool[,] visited;
+
+    public GameObject[,] GridArray;
+
+    private bool[,] visited;
     private List<Vector2Int> visitedCellsWithUnvisitedNeighbors = new List<Vector2Int>();
+
+    private void Awake()
+    {
+        NodeExtents = FindFirstObjectByType<Node>().GetNodeExtents();
+    }
 
 
     // Start is called before the first frame update
@@ -207,7 +216,7 @@ public class Grid : MonoBehaviour
 
     //does not work for some reason.... raycast has forsaken me
     //i wanted to save time and instead created a lot of weird ass problems
-    //my brother in christ i work in unity full time
+    //my brother in christ i work with unity full time
     //this shit should not happen to me
     private void BreakWallsRetarded(Vector2Int between, Vector2Int these)
     {
@@ -231,8 +240,12 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public static Vector3 GetTransformPosition(Vector2Int gridPos)
+    public Vector3 GetTransformPosition(Vector2Int gridPos)
     {
-        return new Vector3(gridPos.x * 2f, 0, gridPos.y * 2f);
+        var pos = new Vector3(gridPos.x * NodeExtents * 2, 0, gridPos.y * NodeExtents * 2);
+        var offset = new Vector3(gridSizeX * NodeExtents, 0, gridSizeY * NodeExtents);
+        return pos-offset;
     }
+
+    
 }

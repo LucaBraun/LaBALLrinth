@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.ProBuilder;
 
 public class Node : MonoBehaviour
 {
@@ -13,7 +14,14 @@ public class Node : MonoBehaviour
     [SerializeField] private GameObject WallEast;
     [SerializeField] private GameObject WallSouth;
     [SerializeField] private GameObject WallWest;
+    [SerializeField] private GameObject floor;
 
+    private Grid grid;
+
+    private void Awake()
+    {
+        grid = FindFirstObjectByType<Grid>();
+    }
 
 
     public void DeleteNorth()
@@ -41,7 +49,12 @@ public class Node : MonoBehaviour
     {
         X = x;
         Y = y;
-        var pos = Grid.GetTransformPosition(new Vector2Int(x,y));
+        var pos = grid.GetTransformPosition(new Vector2Int(x,y));
         transform.position = pos;
+    }
+
+    public float GetNodeExtents()
+    {
+        return floor.GetComponent<BoxCollider>().bounds.extents.x;
     }
 }
