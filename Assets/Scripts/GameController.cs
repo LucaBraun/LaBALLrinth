@@ -20,7 +20,8 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         Reset();
-        ballInstance = Instantiate(ball,grid.GridArray[0,0].transform.position + Vector3.up*0.5f, Quaternion.identity);
+        ballInstance = Instantiate(ball,grid.GridArray[0,0].transform.position + Vector3.up*3f, Quaternion.identity);
+        ballInstance.transform.parent = grid.transform;
     }
 
     public void Reset()

@@ -24,7 +24,7 @@ public class CameraCenterer : MonoBehaviour
     public void CenterCamera()
     {
         transform.position = CalculateCameraPosition();
-        orthoCam.orthographicSize = grid.NodeExtents * grid.GridSizeY * 1.1f;
+        orthoCam.orthographicSize = grid.NodeExtents * grid.GridSizeY * 2f;
     }
     
     public Vector3 CalculateCameraPosition()
