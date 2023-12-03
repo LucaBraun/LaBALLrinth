@@ -33,7 +33,7 @@ public class Grid : MonoBehaviour
     {
         InitializeGrid();
         HuntAndKill();
-        //KillDeadEnds();
+        KillDeadEnds();
     }
 
     public void KillDeadEnds()
