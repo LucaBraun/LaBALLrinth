@@ -41,18 +41,6 @@ public class GridTilter : MonoBehaviour
         targetRotation = ClampAngleOnAxis(targetRotation, 1, 0, 0);
 
         transform.rotation = targetRotation;
-        
-
-        // if (Quaternion.Angle(startRotation, targetRotation) < maxAngle)
-        // {
-        //     var rotation = transform.rotation;
-        //     rotation = rotation * rotationZ;
-        //     rotation = rotationX * rotation;
-        //     transform.rotation = rotation;
-        // }
-
-
-
     }
     private void OnEnable()
     {
@@ -67,7 +55,6 @@ public class GridTilter : MonoBehaviour
     private void TiltMouse(InputAction.CallbackContext context)
     {
         var mousePos = context.ReadValue<Vector2>();
-        Debug.Log(mousePos);
         Tilt(cam.ScreenToWorldPoint(mousePos));
     }
 
@@ -91,6 +78,8 @@ public class GridTilter : MonoBehaviour
     
     
     //copied from https://forum.unity.com/threads/object-rotation-clamping.922145/
+    //the best method i ever stole from the internet. This will make things so much easier down the line
+    //Quaternions are voodoo magic
     private Quaternion ClampAngleOnAxis(Quaternion q, int axis, float minAngle, float maxAngle)
     {
         q.x /= q.w;

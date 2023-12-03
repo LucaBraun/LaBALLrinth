@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 {
 
     [SerializeField] private GameObject ball;
+    [SerializeField] private GameObject Goal;
+    
     private GameObject ballInstance;
     private Grid grid;
 
@@ -22,6 +24,7 @@ public class GameController : MonoBehaviour
         Reset();
         ballInstance = Instantiate(ball,grid.GridArray[0,0].transform.position + Vector3.up*3f, Quaternion.identity);
         ballInstance.transform.parent = grid.transform;
+        
     }
 
     public void Reset()

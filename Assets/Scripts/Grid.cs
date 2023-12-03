@@ -33,6 +33,25 @@ public class Grid : MonoBehaviour
     {
         InitializeGrid();
         HuntAndKill();
+        //KillDeadEnds();
+    }
+
+    public void KillDeadEnds()
+    {
+        foreach (var cell in GridArray)
+        {
+            var node = cell.GetComponent<Node>();
+            var walls = node.GetWallDirections();
+
+            if (!node.IsDeadEnd())
+            {
+                continue;
+            }
+
+            var between = new Vector2Int(node.X, node.Y);
+            var these = between + walls[Random.Range(0, walls.Count)];
+            BreakWalls(between, these);
+        }
     }
 
 
@@ -188,21 +207,17 @@ public class Grid : MonoBehaviour
         var theseNode = GridArray[these.x, these.y].GetComponent<Node>();
         var direction = these - between;
 
-        var north = new Vector2Int(0, 1);
-        var south = new Vector2Int(0, -1);
-        var east = new Vector2Int(1, 0);
-
-        if (direction.Equals(north))
+        if (direction.Equals(DirectionConstants.north))
         {
             betweenNode.DeleteNorth();
             theseNode.DeleteSouth();
         }
-        else if (direction.Equals(south))
+        else if (direction.Equals(DirectionConstants.south))
         {
             betweenNode.DeleteSouth();
             theseNode.DeleteNorth();
         }
-        else if (direction.Equals(east))
+        else if (direction.Equals(DirectionConstants.east))
         {
             betweenNode.DeleteEast();
             theseNode.DeleteWest();
@@ -212,6 +227,8 @@ public class Grid : MonoBehaviour
             betweenNode.DeleteWest();
             theseNode.DeleteEast();
         }
+        
+        Debug.DrawLine(betweenNode.transform.position+Vector3.up*3f, theseNode.transform.position+Vector3.up*3f, Color.green, 5f);
     }
 
     //does not work for some reason.... raycast has forsaken me
